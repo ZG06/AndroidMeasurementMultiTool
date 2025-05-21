@@ -1,10 +1,8 @@
 package com.example.measurementmultitool.ui.calculator
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.core.os.registerForAllProfilingResults
 import androidx.lifecycle.ViewModel
 
 class CalculatorViewModel : ViewModel() {
