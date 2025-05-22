@@ -50,7 +50,6 @@ fun CalculatorScreen(
     ) { innerPadding ->
         Column(
             modifier = Modifier
-                .background(color = Color(0xff474749))
                 .verticalScroll(scrollState)
                 .padding(innerPadding)
                 .fillMaxSize(),

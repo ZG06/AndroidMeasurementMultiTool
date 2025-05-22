@@ -52,6 +52,7 @@ fun HomeScreen(
             modifier = Modifier.padding(16.dp),
             contentPadding = innerPadding
         ) {
+            // Calculator
             item {
                 Card(
                     onClick = onCalculatorClick,
@@ -80,6 +81,7 @@ fun HomeScreen(
                     }
                 }
             }
+            // Currency Converter
             item {
                 Card(
                     onClick = onCurrencyConverterClick,
@@ -109,6 +111,7 @@ fun HomeScreen(
                     }
                 }
             }
+            // Temperature Converter
             item {
                 Card(
                     onClick = onTemperatureConverterClick,
