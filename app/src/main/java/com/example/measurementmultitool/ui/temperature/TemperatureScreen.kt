@@ -121,11 +121,18 @@ fun TemperatureScreen(
                     modifier = Modifier.weight(1f)
                 )
                 TemperatureButton(
+                    buttonText = "-",
+                    onClick = {
+                        temperatureViewModel.onAction(TemperatureAction.Minus)
+                    },
+                    modifier = Modifier.weight(1f)
+                )
+                TemperatureButton(
                     buttonText = "⌫",
                     onClick = {
                         temperatureViewModel.onAction(TemperatureAction.Delete)
                     },
-                    modifier = Modifier.weight(2f)
+                    modifier = Modifier.weight(1f)
                 )
             }
             Row(

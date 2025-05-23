@@ -14,6 +14,7 @@ class TemperatureViewModel : ViewModel() {
         when (action) {
             is TemperatureAction.Number -> enterNumber(action.number)
             is TemperatureAction.Clear -> uiState = TemperatureUiState(inputUnit = uiState.inputUnit, outputUnit = uiState.outputUnit)
+            is TemperatureAction.Minus -> addMinus()
             is TemperatureAction.Decimal -> enterDecimal()
             is TemperatureAction.Delete -> performDeletion()
             is TemperatureAction.Calculate -> performCalculation()
@@ -29,6 +30,14 @@ class TemperatureViewModel : ViewModel() {
         )
     }
 
+    private fun addMinus() {
+        if (uiState.inputTemperature == "") {
+            uiState = uiState.copy(
+                inputTemperature = "-"
+            )
+        }
+    }
+
     private fun enterDecimal() {
         if (!uiState.inputTemperature.contains(".") && uiState.inputTemperature.isNotBlank()) {
             uiState = uiState.copy(
@@ -40,7 +49,7 @@ class TemperatureViewModel : ViewModel() {
     private fun performDeletion() {
         if (uiState.inputTemperature != "")
             uiState = uiState.copy(
-                inputTemperature = uiState.inputTemperature.take(1)
+                inputTemperature = uiState.inputTemperature.dropLast(1)
             )
     }
 
