@@ -55,29 +55,36 @@ class TemperatureViewModel : ViewModel() {
 
     private fun performCalculation() {
         var inputTemp = uiState.inputTemperature.toDoubleOrNull()
-        uiState = uiState.copy(
-            outputTemperature =
-                when (uiState.inputUnit) {
-                    "°C" -> when (uiState.outputUnit) {
-                        "°C" -> inputTemp
-                        "°F" -> (inputTemp?.times(9)?.div(5)?.plus(32))
-                        "°K" -> (inputTemp?.plus(273.15))
-                        else -> null
-                    }
-                    "°F" -> when (uiState.outputUnit) {
-                        "°C" -> ((inputTemp?.minus(32))?.times(5)?.div(9))
-                        "°F" -> inputTemp
-                        "°K" -> ((inputTemp?.minus(32))?.times(5)?.div(9)?.plus(273.15))
-                        else -> null
-                    }
-                    "°K" -> when (uiState.outputUnit) {
-                        "°C" -> (inputTemp?.minus(273.15))
-                        "°F" -> ((inputTemp?.minus(273.15))?.times(9)?.div(5)?.plus(32))
-                        "°K" -> inputTemp
-                        else -> null
-                    }
+
+        var outputTemp =
+            when (uiState.inputUnit) {
+                "°C" -> when (uiState.outputUnit) {
+                    "°C" -> inputTemp
+                    "°F" -> (inputTemp?.times(9)?.div(5)?.plus(32))
+                    "°K" -> (inputTemp?.plus(273.15))
                     else -> null
-                }.toString().take(8)
+                }
+                "°F" -> when (uiState.outputUnit) {
+                    "°C" -> ((inputTemp?.minus(32))?.times(5)?.div(9))
+                    "°F" -> inputTemp
+                    "°K" -> ((inputTemp?.minus(32))?.times(5)?.div(9)?.plus(273.15))
+                    else -> null
+                }
+                "°K" -> when (uiState.outputUnit) {
+                    "°C" -> (inputTemp?.minus(273.15))
+                    "°F" -> ((inputTemp?.minus(273.15))?.times(9)?.div(5)?.plus(32))
+                    "°K" -> inputTemp
+                    else -> null
+                }
+                else -> null
+            }.toString().take(6)
+
+        if (inputTemp == null || inputTemp.toString() == "-") {
+            return
+        }
+
+        uiState = uiState.copy(
+            outputTemperature = outputTemp
         )
     }
 
