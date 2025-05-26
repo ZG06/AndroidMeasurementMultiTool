@@ -1,6 +1,5 @@
 package com.example.measurementmultitool.ui.test
 
-import android.util.Log
 import com.example.measurementmultitool.ui.temperature.TemperatureAction
 import com.example.measurementmultitool.ui.temperature.TemperatureViewModel
 import junit.framework.Assert.assertEquals

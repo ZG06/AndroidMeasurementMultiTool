@@ -41,7 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.measurementmultitool.MeasurementMultiToolTopAppBar
+import com.example.measurementmultitool.ui.MeasurementMultiToolTopAppBar
 import com.example.measurementmultitool.ui.theme.MeasurementMultiToolTheme
 
 
@@ -81,7 +81,7 @@ fun TemperatureScreen(
                     if (uiState.inputTemperature != "")
                         temperatureViewModel.onAction(TemperatureAction.Calculate)
                 },
-                text = (uiState.inputTemperature).toString(),
+                text = uiState.inputTemperature,
                 modifier = Modifier.padding(
                     top = 24.dp,
                     start = 24.dp,
@@ -97,7 +97,7 @@ fun TemperatureScreen(
                     if (uiState.inputTemperature != "")
                         temperatureViewModel.onAction(TemperatureAction.Calculate)
                 },
-                text = (uiState.outputTemperature).toString(),
+                text = uiState.outputTemperature,
                 modifier = Modifier.padding(
                     start = 24.dp,
                     end = 24.dp,
@@ -310,7 +310,6 @@ fun TemperatureTextArea(
 }
 
 
-
 @Composable
 fun TemperatureDropDownList(
     selectedUnit: String,
@@ -328,7 +327,9 @@ fun TemperatureDropDownList(
             .clickable { expanded = true },
         contentAlignment = Alignment.Center
     ) {
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(
                 text = selectedUnit,
                 style = MaterialTheme.typography.labelMedium,
